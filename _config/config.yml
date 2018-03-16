@@ -1,0 +1,7 @@
+---
+Name: automaticlinks
+---
+
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - Pixelspin\Automaticlinks\Extensions\AutomaticLinksExtension
