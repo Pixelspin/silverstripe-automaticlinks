@@ -27,7 +27,7 @@ class AutomaticLinksExtension extends DataExtension implements TemplateGlobalPro
 
     public static function AddAutomaticLinks($content){
         if(!$content){
-            return $content;
+            return DBField::create_field(DBHTMLText::class, $content);
         }
         $currentPage = Controller::curr();
         $pagesWithKeywords = SiteTree::get()->exclude('AutomaticLinksKeywords', null)->exclude('ID', $currentPage->ID);
@@ -39,7 +39,7 @@ class AutomaticLinksExtension extends DataExtension implements TemplateGlobalPro
             }
         }
         if(!count($keywords)){
-            return $content;
+            return DBField::create_field(DBHTMLText::class, $content);
         }
         foreach($keywords as $keyword => $link){
             $content = str_ireplace(' ' . $keyword . ' ', ' <a href="'.$link.'">'.$keyword.'</a> ', $content);
