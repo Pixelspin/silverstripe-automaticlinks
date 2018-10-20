@@ -46,7 +46,7 @@ class AutomaticLinksExtension extends DataExtension implements TemplateGlobalPro
             $content = str_ireplace(' ' . $keyword . '.', ' <a href="'.$link.'">'.$keyword.'</a>.', $content);
             $content = str_ireplace(' ' . $keyword . ',', ' <a href="'.$link.'">'.$keyword.'</a>,', $content);
         }
-        return DBField::create_field(DBHTMLText::class, $content);
+        return DBField::create_field(DBHTMLText::class, \SilverStripe\View\Parsers\ShortcodeParser::get_active()->parse($content));
     }
 
     public static function get_template_global_variables()
